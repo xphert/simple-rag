@@ -1,0 +1,58 @@
+{
+  "config": {
+    "temperature": 0.2,
+    "top_k": 4,
+    "chunk_size": 50,
+    "chunk_overlap": 20,
+    "embedding_model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+    "llm_model": "openai/gpt-oss-120b",
+    "llm_backend": "local:models/Qwen2.5-1.5B-Instruct"
+  },
+  "ingest": {
+    "source": "modul-rag-dasar.pdf",
+    "pages_read": 5,
+    "chunks_stored": 81,
+    "elapsed_seconds": 9.08
+  },
+  "answers": [
+    {
+      "question": "Berapa dimensi vektor dan batas maksimum token model embedding yang digunakan pada modul ini?",
+      "repeat": 0,
+      "answer": "Dalam modul ini:\n\n- Dimensi vektor untuk output transformer sebesar 384.\n- Batas maksimum token model embedding adalah 128.\n\nReferensi: [Page: 3]",
+      "sources": [
+        {
+          "source": "modul-rag-dasar.pdf",
+          "page": 3,
+          "score": 0.7207766564430285
+        },
+        {
+          "source": "modul-rag-dasar.pdf",
+          "page": 2,
+          "score": 0.6352573944263697
+        }
+      ],
+      "elapsed_seconds": 18.08
+    },
+    {
+      "question": "Berapa nilai chunk size dan chunk overlap default pada modul ini, dan mengapa chunk overlap diperlukan?",
+      "repeat": 0,
+      "answer": "Nilai default untuk chunk size pada modul ini adalah 100 tokens.\n\nNilai default untuk chunk overlap adalah 20 tokens.\n\nChunk overlap diperlukan karena memastikan bahwa setiap bagian (chunk) memiliki konteks yang cukup luas sehingga informasi tersebut dapat dikembangkan secara efektif. Dengan menggunakan overlap, kita mencegah fragmentasi data dan menjaga integritas analisis.",
+      "sources": [
+        {
+          "source": "modul-rag-dasar.pdf",
+          "page": 2,
+          "score": 0.6538882118196434
+        },
+        {
+          "source": "modul-rag-dasar.pdf",
+          "page": 3,
+          "score": 0.5685682182800307
+        }
+      ],
+      "elapsed_seconds": 21.82
+    }
+  ],
+  "group": "chunk_size",
+  "label": "chunk_50",
+  "timestamp": "2026-11-01T03:34:58+00:00"
+}

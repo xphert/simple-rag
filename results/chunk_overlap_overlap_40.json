@@ -1,0 +1,58 @@
+{
+  "config": {
+    "temperature": 0.2,
+    "top_k": 4,
+    "chunk_size": 100,
+    "chunk_overlap": 40,
+    "embedding_model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+    "llm_model": "openai/gpt-oss-120b",
+    "llm_backend": "local:models/Qwen2.5-1.5B-Instruct"
+  },
+  "ingest": {
+    "source": "modul-rag-dasar.pdf",
+    "pages_read": 5,
+    "chunks_stored": 43,
+    "elapsed_seconds": 5.33
+  },
+  "answers": [
+    {
+      "question": "Berapa dimensi vektor dan batas maksimum token model embedding yang digunakan pada modul ini?",
+      "repeat": 0,
+      "answer": "Vektor yang dihasilkan berdimensi 384.\n\nBatas maksimum token model embedding yang digunakan pada modul ini adalah 128 token.",
+      "sources": [
+        {
+          "source": "modul-rag-dasar.pdf",
+          "page": 3,
+          "score": 0.7154856109094504
+        },
+        {
+          "source": "modul-rag-dasar.pdf",
+          "page": 2,
+          "score": 0.6483276804833028
+        }
+      ],
+      "elapsed_seconds": 24.42
+    },
+    {
+      "question": "Berapa nilai chunk size dan chunk overlap default pada modul ini, dan mengapa chunk overlap diperlukan?",
+      "repeat": 0,
+      "answer": "Nilai chunk size pada modul ini adalah 100 token dengan default chunk overlap 20 token.\n\nChunk overlap diperlukan untuk mempertahankan kalimat yang ada di antara dua chunk. Tanpa overlap, sebuah definisi bisa terpisahkan menjadi dua, sehingga salah satu chunk mungkin saja terambil sendiri tanpa pasangannya. Menggunakan overlap memberikan kontrol atas bagaimana fragmentasi dilakukan, serta memastikan bahwa semua partikulars (kalimat) tetap bersama-sama.",
+      "sources": [
+        {
+          "source": "modul-rag-dasar.pdf",
+          "page": 2,
+          "score": 0.6678037907416405
+        },
+        {
+          "source": "modul-rag-dasar.pdf",
+          "page": 3,
+          "score": 0.5756579595106256
+        }
+      ],
+      "elapsed_seconds": 35.55
+    }
+  ],
+  "group": "chunk_overlap",
+  "label": "overlap_40",
+  "timestamp": "2026-11-01T10:37:08+00:00"
+}

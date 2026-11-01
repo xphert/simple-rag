@@ -1,0 +1,89 @@
+{
+  "config": {
+    "temperature": 0.2,
+    "top_k": 4,
+    "chunk_size": 100,
+    "chunk_overlap": 20,
+    "embedding_model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+    "llm_model": "openai/gpt-oss-120b",
+    "llm_backend": "local:models/Qwen2.5-1.5B-Instruct"
+  },
+  "ingest": null,
+  "answers": [
+    {
+      "question": "Berapa dimensi vektor dan batas maksimum token model embedding yang digunakan pada modul ini?",
+      "repeat": 0,
+      "answer": "Dalam modul ini:\n\n- Dimensi vektor untuk model embedding adalah 384.\n- Batas maksimum token yang digunakan oleh model embedding adalah 128.\n\nReferensi: [Source: modul-rag-dasar.pdf | Page: 3]",
+      "sources": [
+        {
+          "source": "modul-rag-dasar.pdf",
+          "page": 3,
+          "score": 0.6810632963633203
+        },
+        {
+          "source": "modul-rag-dasar.pdf",
+          "page": 2,
+          "score": 0.648327645173044
+        }
+      ],
+      "elapsed_seconds": 25.58
+    },
+    {
+      "question": "Berapa dimensi vektor dan batas maksimum token model embedding yang digunakan pada modul ini?",
+      "repeat": 1,
+      "answer": "Dalam modul ini:\n\n- Dimensi vektor untuk model embedding adalah 384.\n- Batas maksimum token yang digunakan oleh model embedding adalah 128.\n\nSumber: [Page: 3]",
+      "sources": [
+        {
+          "source": "modul-rag-dasar.pdf",
+          "page": 3,
+          "score": 0.6810632963633203
+        },
+        {
+          "source": "modul-rag-dasar.pdf",
+          "page": 2,
+          "score": 0.648327645173044
+        }
+      ],
+      "elapsed_seconds": 23.55
+    },
+    {
+      "question": "Berapa nilai chunk size dan chunk overlap default pada modul ini, dan mengapa chunk overlap diperlukan?",
+      "repeat": 0,
+      "answer": "Nilai chunk size pada modul ini adalah 100 token dengan default.\n\nNilai chunk overlap default adalah 20 token.\n\nChunk overlap diperlukan untuk mempertahankan konteks antar bagian text (chunk) yang saling bertemu atau berhubungan. Tanpa overlap, setiap partisipan bisa saja menerima informasi yang sangat berbeda karena mereka mungkin mendapatkan fragment text yang berbeda-beda. \n\nOverlapping juga berguna untuk menjamin bahwa pesan yang ada di batas kedua chunk tetap bersatu dan masih relevan meskipun hanya beberapa kata saja. Ini memberikan kesempatan bagi sistem untuk melihat hubungan antara dua bagian text yang berdekatan secara spesifik.",
+      "sources": [
+        {
+          "source": "modul-rag-dasar.pdf",
+          "page": 2,
+          "score": 0.6678037553078773
+        },
+        {
+          "source": "modul-rag-dasar.pdf",
+          "page": 3,
+          "score": 0.5639914427120063
+        }
+      ],
+      "elapsed_seconds": 36.47
+    },
+    {
+      "question": "Berapa nilai chunk size dan chunk overlap default pada modul ini, dan mengapa chunk overlap diperlukan?",
+      "repeat": 1,
+      "answer": "Nilai chunk size pada modul ini adalah 100 token dengan nilai default.\n\nNilai chunk overlap pada modul ini adalah 20 token dengan nilai default.\n\nChunk overlap diperlukan untuk menjaga kalimat yang berada di perbatasan dua chunk. Tanpa overlap, sebuah definisi dapat terbelah menjadi dua, sehingga memperkecil potensi kesalahan interpretasi. Selain itu, overlap juga berguna untuk mencegah bahwa sebuah chunk bisa terisolasi tanpa pasangannya, yang dapat menyebabkan masalah dalam pemrosesan konteks.",
+      "sources": [
+        {
+          "source": "modul-rag-dasar.pdf",
+          "page": 2,
+          "score": 0.6678037553078773
+        },
+        {
+          "source": "modul-rag-dasar.pdf",
+          "page": 3,
+          "score": 0.5639914427120063
+        }
+      ],
+      "elapsed_seconds": 32.17
+    }
+  ],
+  "group": "temperature",
+  "label": "temp_0.2",
+  "timestamp": "2026-11-01T03:27:44+00:00"
+}

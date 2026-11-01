@@ -1,0 +1,68 @@
+{
+  "config": {
+    "temperature": 0.2,
+    "top_k": 8,
+    "chunk_size": 100,
+    "chunk_overlap": 20,
+    "embedding_model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+    "llm_model": "openai/gpt-oss-120b",
+    "llm_backend": "local:models/Qwen2.5-1.5B-Instruct"
+  },
+  "ingest": null,
+  "answers": [
+    {
+      "question": "Berapa dimensi vektor dan batas maksimum token model embedding yang digunakan pada modul ini?",
+      "repeat": 0,
+      "answer": "Untuk informasi tentang dimensi vektor dan batas maksimum token model embedding yang digunakan pada modul ini:\n\nDimensi vektor: 384 (model sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2)\nBatas maksimum token: 128 (untuk input)",
+      "sources": [
+        {
+          "source": "modul-rag-dasar.pdf",
+          "page": 3,
+          "score": 0.6810632963633203
+        },
+        {
+          "source": "modul-rag-dasar.pdf",
+          "page": 2,
+          "score": 0.648327645173044
+        },
+        {
+          "source": "modul-rag-dasar.pdf",
+          "page": 4,
+          "score": 0.49201264685434043
+        },
+        {
+          "source": "modul-rag-dasar.pdf",
+          "page": 1,
+          "score": 0.4512797346804365
+        }
+      ],
+      "elapsed_seconds": 42.17
+    },
+    {
+      "question": "Berapa nilai chunk size dan chunk overlap default pada modul ini, dan mengapa chunk overlap diperlukan?",
+      "repeat": 0,
+      "answer": "Nilai chunk size dan chunk overlap default pada modul ini adalah:\n\n- Chunk size: 100 token\n- Chunk overlap: 20 token\n\nKeharusan untuk menggunakan chunk overlap disebutkan karena ia bertujuan untuk menjaga kalimat yang ada di perbatasan dua chunk, sehingga tidak terjadi pemecahan definisi menjadi dua bagian.\n\nDalam konteks penggunaan embedding, ukuran chunk juga sangat penting kerana ia mempengaruhi isi teks yang dimasukkan ke dalam vektor. Dengan mengatur ukuran chunk secara tepat, kita bisa mencapai performansi optimal yang baik.",
+      "sources": [
+        {
+          "source": "modul-rag-dasar.pdf",
+          "page": 2,
+          "score": 0.6678037553078773
+        },
+        {
+          "source": "modul-rag-dasar.pdf",
+          "page": 3,
+          "score": 0.5639914427120063
+        },
+        {
+          "source": "modul-rag-dasar.pdf",
+          "page": 4,
+          "score": 0.451052539362973
+        }
+      ],
+      "elapsed_seconds": 47.22
+    }
+  ],
+  "group": "topk",
+  "label": "topk_8",
+  "timestamp": "2026-11-01T03:33:58+00:00"
+}

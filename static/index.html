@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0B1220">
+  <meta name="description" content="Upload PDFs, ask questions, and create concise briefs grounded in your documents.">
+  <title>Simple RAG — Document workspace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inclusive+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Lexend+Deca:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles.css">
+  <script src="/static/vendor/marked.umd.js" defer></script>
+  <script src="/static/vendor/purify.min.js" defer></script>
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" class="icon-library" aria-hidden="true">
+    <symbol id="icon-book" viewBox="0 0 24 24"><path d="M12 7v14M3 3h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5v16h-5a4 4 0 0 0-4 2 4 4 0 0 0-4-2H3z"/></symbol>
+    <symbol id="icon-upload" viewBox="0 0 24 24"><path d="M12 16V3m-5 5 5-5 5 5M4 15v5a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-5"/></symbol>
+    <symbol id="icon-file" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zM14 2v6h6M8 13h8M8 17h5"/></symbol>
+    <symbol id="icon-chat" viewBox="0 0 24 24"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 9 9 0 0 1-4-.9L3 21l1.9-5.5a9 9 0 0 1-.9-4A8.5 8.5 0 0 1 12.5 3H13a8.5 8.5 0 0 1 8 8zM8 10h8M8 14h5"/></symbol>
+    <symbol id="icon-spark" viewBox="0 0 24 24"><path d="m12 3 2.7 6.3L21 12l-6.3 2.7L12 21l-2.7-6.3L3 12l6.3-2.7zM20 2v4m-2-2h4"/></symbol>
+    <symbol id="icon-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+    <symbol id="icon-refresh" viewBox="0 0 24 24"><path d="M20 7v5h-5M4 17v-5h5M6 6a8 8 0 0 1 13 2l1 4M4 12l1 4a8 8 0 0 0 13 2"/></symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="icon-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></symbol>
+    <symbol id="icon-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+    <symbol id="icon-link" viewBox="0 0 24 24"><path d="m10 13 4-4M8 16l-1 1a4 4 0 0 1-6-6l4-4a4 4 0 0 1 6 0m2 1 1-1a4 4 0 0 1 6 6l-4 4a4 4 0 0 1-6 0"/></symbol>
+  </svg>
+
+  <div class="app-container">
+    <header class="app-header">
+      <a class="brand" href="/" aria-label="Simple RAG home">
+        <span class="brand-mark"><svg class="icon"><use href="#icon-book"/></svg></span>
+        <span><span class="brand-title">Simple RAG</span><span class="brand-subtitle">Document workspace</span></span>
+      </a>
+      <div class="header-actions">
+        <span id="health-status" class="status-pill info" role="status"><span class="status-dot"></span><span id="health-label">Connecting</span></span>
+        <button id="refresh-health" class="icon-button" type="button" aria-label="Refresh connection status" title="Refresh connection status"><svg class="icon"><use href="#icon-refresh"/></svg></button>
+        <a class="api-link" href="/docs" target="_blank" rel="noopener">API docs <svg class="icon"><use href="#icon-arrow"/></svg></a>
+      </div>
+    </header>
+
+    <main>
+      <div class="page-heading">
+        <div><h1>Your documents, in focus.</h1><p>Turn your PDFs into answers and concise, source-backed briefs.</p></div>
+        <span class="workspace-label"><svg class="icon"><use href="#icon-book"/></svg>Personal knowledge workspace</span>
+      </div>
+
+      <div class="workspace-grid">
+        <aside class="document-column" aria-label="Document uploads">
+          <section class="card upload-card" aria-labelledby="documents-title">
+            <div class="section-heading"><h2 id="documents-title">Your documents</h2><span class="tag">PDF</span></div>
+            <p class="section-description">Add a document to your knowledge base.</p>
+            <label id="drop-zone" class="drop-zone" for="pdf-file">
+              <input id="pdf-file" type="file" accept=".pdf,application/pdf" aria-describedby="upload-help">
+              <span class="upload-icon"><svg class="icon"><use href="#icon-upload"/></svg></span>
+              <span class="drop-title">Drop a PDF here</span>
+              <span class="drop-description">or <span class="browse-text">browse files</span></span>
+              <span id="upload-help" class="drop-hint">One document at a time</span>
+            </label>
+            <div id="selected-file" class="selected-file" hidden>
+              <span class="file-icon"><svg class="icon"><use href="#icon-file"/></svg></span>
+              <div class="file-details"><strong id="selected-name"></strong><span id="selected-size"></span></div>
+              <button id="remove-file" type="button" class="icon-button" aria-label="Remove selected file"><svg class="icon"><use href="#icon-close"/></svg></button>
+            </div>
+            <button id="upload-button" class="button button-primary full-width" type="button" disabled><svg class="icon"><use href="#icon-upload"/></svg><span id="upload-button-label">Upload document</span></button>
+            <div id="upload-progress" class="processing-note" role="status" hidden><span class="spinner"></span>Reading pages and preparing your document…</div>
+            <p id="upload-error" class="error-message" role="alert" hidden></p>
+            <div class="session-heading"><h3>Uploaded this session</h3><span id="document-count" class="count">0</span></div>
+            <div id="document-list" class="document-list"></div>
+            <div id="documents-empty" class="documents-empty"><svg class="icon"><use href="#icon-file"/></svg><p>No documents added yet</p><span>Your uploaded PDFs will appear here.</span></div>
+            <p class="session-note">This list shows uploads from this browser session. Questions search all documents in the knowledge base.</p>
+          </section>
+          <section class="workflow-note" aria-labelledby="workflow-title">
+            <h3 id="workflow-title">A little context goes a long way</h3>
+            <p>Upload a text-based PDF, then ask a specific question or choose a topic for a brief.</p>
+            <div class="grounding-note"><svg class="icon"><use href="#icon-link"/></svg><span>Responses include document and page references so you can follow the source.</span></div>
+          </section>
+        </aside>
+
+        <section class="card answer-workspace" aria-label="Ask questions and create briefs">
+          <div class="workspace-top">
+            <div class="tabs" role="tablist" aria-label="Workspace mode">
+              <button id="ask-tab" class="tab active" type="button" role="tab" aria-selected="true" aria-controls="ask-panel" tabindex="0"><svg class="icon"><use href="#icon-chat"/></svg>Ask a question</button>
+              <button id="brief-tab" class="tab" type="button" role="tab" aria-selected="false" aria-controls="brief-panel" tabindex="-1"><svg class="icon"><use href="#icon-spark"/></svg>Create a brief</button>
+            </div>
+            <span class="grounded-label"><span class="small-dot"></span>Grounded in your documents</span>
+          </div>
+
+          <div id="ask-panel" role="tabpanel" aria-labelledby="ask-tab">
+            <form id="ask-form" class="prompt-form">
+              <label for="question">What would you like to know?</label>
+              <textarea id="question" name="question" rows="3" placeholder="Ask a question about your documents…" required></textarea>
+              <div class="form-footer"><span>Be specific for more relevant answers.</span><button id="ask-button" class="button button-primary" type="submit"><span>Ask question</span><svg class="icon"><use href="#icon-arrow"/></svg></button></div>
+            </form>
+            <p id="ask-error" class="error-message request-error" role="alert" hidden></p>
+            <div id="ask-result" class="result-area" aria-live="polite" aria-busy="false">
+              <div class="result-empty"><span class="empty-art"><svg class="icon"><use href="#icon-chat"/></svg><span class="art-spark">✦</span></span><h2>Good questions start here.</h2><p>Ask about a detail, connect ideas, or find the key takeaways from your documents.</p><div class="suggestions"><button class="suggestion" type="button" data-mode="ask" data-prompt="What are the key takeaways from the documents?">Find key takeaways<svg class="icon"><use href="#icon-arrow"/></svg></button><button class="suggestion" type="button" data-mode="ask" data-prompt="What recommendations are made in the documents?">Explore recommendations<svg class="icon"><use href="#icon-arrow"/></svg></button></div><span class="empty-caption">Your answer and its sources will appear here.</span></div>
+            </div>
+          </div>
+
+          <div id="brief-panel" role="tabpanel" aria-labelledby="brief-tab" hidden>
+            <form id="brief-form" class="prompt-form">
+              <label for="topic">What topic should your brief cover?</label>
+              <textarea id="topic" name="topic" rows="3" placeholder="Enter a topic to explore across your documents…" required></textarea>
+              <div class="form-footer"><span>A summary, key points, and source references.</span><button id="brief-button" class="button button-primary" type="submit"><span>Create brief</span><svg class="icon"><use href="#icon-spark"/></svg></button></div>
+            </form>
+            <p id="brief-error" class="error-message request-error" role="alert" hidden></p>
+            <div id="brief-result" class="result-area" aria-live="polite" aria-busy="false">
+              <div class="result-empty"><span class="empty-art"><svg class="icon"><use href="#icon-file"/></svg><span class="art-spark">✦</span></span><h2>A clearer picture, in fewer words.</h2><p>Choose a topic and get a concise brief built from the relevant passages in your documents.</p><div class="suggestions"><button class="suggestion" type="button" data-mode="brief" data-prompt="Main findings and recommendations">Findings and recommendations<svg class="icon"><use href="#icon-arrow"/></svg></button></div><span class="empty-caption">Your brief and its sources will appear here.</span></div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+    <footer class="page-footer"><span>Simple RAG</span><span>Read. Ask. Understand.</span></footer>
+  </div>
+  <div id="toast" class="toast" role="status" hidden></div>
+</body>
+</html>

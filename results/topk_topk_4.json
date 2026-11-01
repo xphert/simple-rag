@@ -1,0 +1,53 @@
+{
+  "config": {
+    "temperature": 0.2,
+    "top_k": 4,
+    "chunk_size": 100,
+    "chunk_overlap": 20,
+    "embedding_model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+    "llm_model": "openai/gpt-oss-120b",
+    "llm_backend": "local:models/Qwen2.5-1.5B-Instruct"
+  },
+  "ingest": null,
+  "answers": [
+    {
+      "question": "Berapa dimensi vektor dan batas maksimum token model embedding yang digunakan pada modul ini?",
+      "repeat": 0,
+      "answer": "Dalam modul ini:\n\n- Dimensi vektor untuk model embedding adalah 384.\n- Batas maksimum token yang digunakan oleh model embedding adalah 128.\n\nSumber: Modul-RAG-Dasar.pdf, halaman 3.",
+      "sources": [
+        {
+          "source": "modul-rag-dasar.pdf",
+          "page": 3,
+          "score": 0.6810632963633203
+        },
+        {
+          "source": "modul-rag-dasar.pdf",
+          "page": 2,
+          "score": 0.648327645173044
+        }
+      ],
+      "elapsed_seconds": 26.29
+    },
+    {
+      "question": "Berapa nilai chunk size dan chunk overlap default pada modul ini, dan mengapa chunk overlap diperlukan?",
+      "repeat": 0,
+      "answer": "Nilai chunk size pada modul ini adalah 100 token dengan default.\n\nNilai chunk overlap adalah 20 token dengan default.\n\nChunk overlap diperlukan untuk mempertahankan konteks antar bagian text (chunk) yang saling bertemu atau berhubungan. Tanpa overlap, setiap partisipan bisa saja menerima fragment tanpa pasangan lain, sehingga menyebabkan kesalahpahaman atau hilangnya konteks.",
+      "sources": [
+        {
+          "source": "modul-rag-dasar.pdf",
+          "page": 2,
+          "score": 0.6678037553078773
+        },
+        {
+          "source": "modul-rag-dasar.pdf",
+          "page": 3,
+          "score": 0.5639914427120063
+        }
+      ],
+      "elapsed_seconds": 28.83
+    }
+  ],
+  "group": "topk",
+  "label": "topk_4",
+  "timestamp": "2026-11-01T03:32:18+00:00"
+}

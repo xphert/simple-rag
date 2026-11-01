@@ -1,0 +1,58 @@
+{
+  "config": {
+    "temperature": 0.2,
+    "top_k": 4,
+    "chunk_size": 100,
+    "chunk_overlap": 20,
+    "embedding_model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+    "llm_model": "openai/gpt-oss-120b",
+    "llm_backend": "local:models/Qwen2.5-1.5B-Instruct"
+  },
+  "ingest": {
+    "source": "modul-rag-dasar.pdf",
+    "pages_read": 5,
+    "chunks_stored": 38,
+    "elapsed_seconds": 6.63
+  },
+  "answers": [
+    {
+      "question": "Berapa dimensi vektor dan batas maksimum token model embedding yang digunakan pada modul ini?",
+      "repeat": 0,
+      "answer": "Dalam modul ini:\n\n- Dimensi vektor untuk model embedding adalah 384.\n- Batas maksimum token yang bisa digunakan dalam satu chunk adalah 128.\n\nReferensi: [Source: modul-rag-dasar.pdf | Page: 3]",
+      "sources": [
+        {
+          "source": "modul-rag-dasar.pdf",
+          "page": 3,
+          "score": 0.6810632970448233
+        },
+        {
+          "source": "modul-rag-dasar.pdf",
+          "page": 2,
+          "score": 0.6483276804833028
+        }
+      ],
+      "elapsed_seconds": 65.78
+    },
+    {
+      "question": "Berapa nilai chunk size dan chunk overlap default pada modul ini, dan mengapa chunk overlap diperlukan?",
+      "repeat": 0,
+      "answer": "Nilai default untuk chunk size pada modul ini adalah 100 token.\n\nNilai default untuk chunk overlap juga adalah 20 token.\n\nChunk overlap diperlukan karena memastikan bahwa kalimat yang berada di perbatasan dua chunk tetap bersatu dan tidak dibelah secara haphazard. Ini bertujuan untuk mencegah definisi atau konteks yang berpotensi diserahkan kepada salah satu bagian chunk jika mereka terpisah dengan overlap yang sangat rendah.",
+      "sources": [
+        {
+          "source": "modul-rag-dasar.pdf",
+          "page": 2,
+          "score": 0.6678037907416405
+        },
+        {
+          "source": "modul-rag-dasar.pdf",
+          "page": 3,
+          "score": 0.5639914615797414
+        }
+      ],
+      "elapsed_seconds": 31.16
+    }
+  ],
+  "group": "chunk_size",
+  "label": "chunk_100",
+  "timestamp": "2026-11-01T10:32:00+00:00"
+}

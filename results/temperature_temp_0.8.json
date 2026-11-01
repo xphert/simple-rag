@@ -1,0 +1,89 @@
+{
+  "config": {
+    "temperature": 0.8,
+    "top_k": 4,
+    "chunk_size": 100,
+    "chunk_overlap": 20,
+    "embedding_model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+    "llm_model": "openai/gpt-oss-120b",
+    "llm_backend": "local:models/Qwen2.5-1.5B-Instruct"
+  },
+  "ingest": null,
+  "answers": [
+    {
+      "question": "Berapa dimensi vektor dan batas maksimum token model embedding yang digunakan pada modul ini?",
+      "repeat": 0,
+      "answer": "Dari konteks yang diberikan, kita bisa mengetahui bahwa:\n\nVektor dari modul ini memiliki dimension 384.\n\nStrategi untuk mengelola tokens dalam modul ditentukan oleh aturan sebagai berikut:\n1. Ukuran chunk (chunk size) dihitung dalam satuan token, bukan karakter. Default value is 100 tokens.\n2. Chunk overlap atau token duplicate sebelum sebuah chunk baru disebutkan mencapai nilai 20 tokens. Hal ini berguna untuk mencegah pembatasan antar chunk.\n\nModularitas dari model embedding menggunakan sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2 dengan beberapa fitur unggulan termasuk:\n- Menggunakan transformator dua lapisan\n- Dapat membaca lebih dari sepuluh bahasa termasuk Bahasa Indonesia \n- Ukuran input maksimal bagi model ini adalah 128 tokens.\n\nUntuk proses penyaringan data, meskipun informasi tentang batas",
+      "sources": [
+        {
+          "source": "modul-rag-dasar.pdf",
+          "page": 3,
+          "score": 0.6810632963633203
+        },
+        {
+          "source": "modul-rag-dasar.pdf",
+          "page": 2,
+          "score": 0.648327645173044
+        }
+      ],
+      "elapsed_seconds": 47.48
+    },
+    {
+      "question": "Berapa dimensi vektor dan batas maksimum token model embedding yang digunakan pada modul ini?",
+      "repeat": 1,
+      "answer": "Dari informasi yang disediakan:\n\nVektor dari model embedde memiliki dimensi sebesar 384.\n\nBatas maksimum token untuk model embedding yang digunakan adalah 128 tokens.\n\nSilakan bandingkan dengan hasil penelitian atau dokumentasi spesifik jika Anda mencari data eksplisit tentang struktur vektor dan batas token tersebut.",
+      "sources": [
+        {
+          "source": "modul-rag-dasar.pdf",
+          "page": 3,
+          "score": 0.6810632963633203
+        },
+        {
+          "source": "modul-rag-dasar.pdf",
+          "page": 2,
+          "score": 0.648327645173044
+        }
+      ],
+      "elapsed_seconds": 28.43
+    },
+    {
+      "question": "Berapa nilai chunk size dan chunk overlap default pada modul ini, dan mengapa chunk overlap diperlukan?",
+      "repeat": 0,
+      "answer": "Nilai chunk size (default) pada modul adalah 100 token.\n\nNilai chunk overlap (default) pada modul adalah 20 token.\n\nChunk overlap diperlukan karena menjaga kalimat yang berada di perbatasan dua chunk, sehingga memastikan bahwa setiap chunk memiliki konteks yang kuat untuk pemahaman. Tanpa overlapping, sebuah definisi bisa terpisahkan menjadi bagian-bagi yang berbeda, menyebabkan ketidakpastian dan kesalahpahaman dalam analisis semantik.",
+      "sources": [
+        {
+          "source": "modul-rag-dasar.pdf",
+          "page": 2,
+          "score": 0.6678037553078773
+        },
+        {
+          "source": "modul-rag-dasar.pdf",
+          "page": 3,
+          "score": 0.5639914427120063
+        }
+      ],
+      "elapsed_seconds": 31.13
+    },
+    {
+      "question": "Berapa nilai chunk size dan chunk overlap default pada modul ini, dan mengapa chunk overlap diperlukan?",
+      "repeat": 1,
+      "answer": "- Chunk Size Default: 100 tokens\n- Chunk Overlap Default: 20 tokens\n\n**PENASihatAN:**\nChunk Overlap (jumlah token yang diulang) diperlukan karena melindungi kalimat di luar area chunk antara bagian berbeda. Tanpa overlapping, jika sebuah definisi dibelah menjadi dua, salah satu partikel mungkin bisa saja terisolasi dengan cepat sehingga konteks keseluruhan tidak terhalus seperti seharusnya. Secara teknis, overlapping memastikan bahwa semua fragment dari suatu kalimat tetap saling berkaitan, termasuk kalimat yang berada di batas-batas beberapa chunks.",
+      "sources": [
+        {
+          "source": "modul-rag-dasar.pdf",
+          "page": 2,
+          "score": 0.6678037553078773
+        },
+        {
+          "source": "modul-rag-dasar.pdf",
+          "page": 3,
+          "score": 0.5639914427120063
+        }
+      ],
+      "elapsed_seconds": 35.52
+    }
+  ],
+  "group": "temperature",
+  "label": "temp_0.8",
+  "timestamp": "2026-11-01T03:30:17+00:00"
+}

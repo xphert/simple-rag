@@ -1,0 +1,9 @@
+fastapi[standard]
+groq
+python-dotenv
+python-multipart
+sentence-transformers
+transformers
+qdrant-client
+pymupdf
+langchain-text-splitters
